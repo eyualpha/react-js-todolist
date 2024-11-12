@@ -1,9 +1,13 @@
 import React from "react";
+import TodoInput from "./components/TodoInput";
+import TodoCard from "./components/TodoCard";
+import TodoList from "./components/TodoList";
 
 const App = () => {
   return (
-    <div>
-      <h1>hello</h1>
+    <div className="app">
+      <TodoInput />
+      <TodoList />
     </div>
   );
 };
