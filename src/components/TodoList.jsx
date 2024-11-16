@@ -42,11 +42,11 @@ const TodoList = () => {
             <button className="delete-btn" onClick={() => deleteTask(index)}>
               Delete
             </button>
-            <button className="move-up-btn" onClick={() => moveTaskUp(index)}>
+            <button className="move-btn" onClick={() => moveTaskUp(index)}>
               👆
             </button>
             <button
-              className="move-down-btn"
+              className="move-btn"
               onClick={() => moveTaskDown(index)}
             >
               👇
