@@ -8,17 +8,43 @@ const TodoList = () => {
   ]);
   const [newTask, setNewTask] = useState("");
 
-  function addTask(index) {}
+  function addTask() {
+    if (newTask.trim() === "") {
+      return window.alert("Please enter a task");
+    }
+    setTasks([...tasks, newTask]);
+    setNewTask("");
+  }
 
-  function deleteTask(index) {}
+  function deleteTask(index) {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  }
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
     console.log(event.target.value);
   }
 
-  function moveTaskUp(index) {}
-  function moveTaskDown(index) {}
+  function moveTaskUp(index) {
+    if (index === 0) return;
+    const updatedTasks = [...tasks];
+    [updatedTasks[index], updatedTasks[index - 1]] = [
+      updatedTasks[index - 1],
+      updatedTasks[index],
+    ];
+    setTasks(updatedTasks);
+  }
+  function moveTaskDown(index) {
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index + 1]] = [
+        updatedTasks[index + 1],
+        updatedTasks[index],
+      ];
+      setTasks(updatedTasks);
+    }
+  }
 
   return (
     <div className="to-do-list">
@@ -45,10 +71,7 @@ const TodoList = () => {
             <button className="move-btn" onClick={() => moveTaskUp(index)}>
               👆
             </button>
-            <button
-              className="move-btn"
-              onClick={() => moveTaskDown(index)}
-            >
+            <button className="move-btn" onClick={() => moveTaskDown(index)}>
               👇
             </button>
           </li>
