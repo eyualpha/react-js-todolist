@@ -1,40 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TodoList = () => {
-  const [todos, setTodos] = React.useState([
-    "Learn React",
-    "Learn Node",
-    "Learn Express",
-    "Learn MongoDB",
-    "Learn Redux",
+  const [tasks, setTasks] = useState([
+    "eat breakfast",
+    "go to work",
+    "do laundry",
   ]);
+  const [newTask, setNewTask] = useState("");
 
-  function addTodo() {
-    setTodos([...todos, "Learn React"]);
+  function addTask(index) {}
+
+  function deleteTask(index) {}
+
+  function handleInputChange(event) {
+    setNewTask(event.target.value);
+    console.log(event.target.value);
   }
-  return (
-    <div>
-      <div className="input-section">
-        <input
-          onChange={setValue(value)}
-          value={txt}
-          type="text"
-          placeholder="Enter a todo..."
-        />
-        <button onClick={() => addTodo()}>Add Todo</button>
-      </div>
 
+  function moveTaskUp(index) {}
+  function moveTaskDown(index) {}
+
+  return (
+    <div className="to-do-list">
+      <h1>To-Do-List</h1>
+
+      <div>
+        <input
+          type="text"
+          value={newTask}
+          onChange={handleInputChange}
+          placeholder="enter your task..."
+        />
+        <button className="add-btn" onClick={addTask}>
+          Add
+        </button>
+      </div>
       <ol>
-        {todos.map((todo, index) => {
-          return (
-            <li key={index}>
-              {todo}
-              <i class="fa-solid fa-pen-to-square">
-                <i class="fa-solid fa-trash"></i>
-              </i>
-            </li>
-          );
-        })}
+        {tasks.map((task, index) => (
+          <li key={index}>
+            <span className="text">{task}</span>{" "}
+            <button className="delete-btn" onClick={() => deleteTask(index)}>
+              Delete
+            </button>
+            <button className="move-up-btn" onClick={() => moveTaskUp(index)}>
+              👆
+            </button>
+            <button
+              className="move-down-btn"
+              onClick={() => moveTaskDown(index)}
+            >
+              👇
+            </button>
+          </li>
+        ))}
       </ol>
     </div>
   );
