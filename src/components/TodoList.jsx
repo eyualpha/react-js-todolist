@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([
-    "eat breakfast",
-    "go to work",
-    "do laundry",
+    // "eat breakfast",
+    // "go to work",
+    // "do laundry",
   ]);
   const [newTask, setNewTask] = useState("");
+
+  useEffect(() => {
+    const saveData = window.localStorage.getItem("tasks");
+    if (saveData) {
+      setTasks(JSON.parse(saveData));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function addTask() {
     if (newTask.trim() === "") {
